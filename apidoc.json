@@ -1,0 +1,11 @@
+{
+  "name": "Voxolab ASR API",
+  "version": "1.1.0",
+  "description": "Documentation of the Speech Recognition System (ASR) REST API provided by Voxolab.",
+
+  "title": "Voxolab ASR API",
+  "footer": {
+      "title": "Tutorial",
+      "filename": "API.md"
+  }
+}

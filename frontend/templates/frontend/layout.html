@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voxolab - Dashboard</title>
+  <link rel="prefetch" type="application/l10n" href="{{ url_for('frontend.static', filename='data.ini') }}" />
+
+  <script type="text/javascript" src="{{ url_for('frontend.static', filename='js/l10n.js') }}"></script>
+
+  <!-- ========== Css Files ========== -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('frontend.static', filename='css/main.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('frontend.static', filename='lib/kode/css/root.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('frontend.static', filename='lib/jquery-fileupload/jquery.fileupload.css') }}">
+  {% block extra_css %}{% endblock %}
+
+
+  </head>
+  <body>
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="{{ url_for('frontend.static', filename='lib/kode/img/loading.gif') }}" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+ <!-- START TOP -->
+ <div id="top" class="clearfix">
+
+     <!-- Start App Logo -->
+     <div class="applogo">
+         <a href="/" class="logo">Voxolab</a>
+     </div>
+     <!-- End App Logo -->
+
+
+     <!-- Start Top Right -->
+     <ul class="top-right">
+
+         <li class="dropdown link">
+             <a href="#" class="hdbutton" data-toggle="modal" data-target="#uploadFile" id="transcribe-file"><i class="fa fa-upload"></i> Retranscrire un fichier </a>
+         </li>
+
+         <li class="link">
+             <a href="http://docs.voxolab.com" class="notifications" target="_blank"><i class="fa fa-life-ring"></i> API</a>
+         </li>
+
+         <li class="dropdown link" id="topbar-account">
+         </li>
+
+     </ul>
+     <!-- End Top Right -->
+
+ </div>
+ <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START CONTENT -->
+<div class="content">
+
+
+    {% block content %}{% endblock %}
+
+    <!-- Start Footer -->
+    <div class="row footer">
+        <div class="col-md-6 text-left">
+            Copyright © 2016 <a href="http://voxolab.com" target="_blank">Voxolab</a> All rights reserved.
+        </div>
+        <div class="col-md-6 text-right">
+        </div>
+    </div>
+    <!-- End Footer -->
+
+
+    <!-- Start Modal Code -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Options de transcription</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="choice">
+                        <h4>1 — Envoyez votre fichier</h4>
+                        <p>Tous les formats de fichiers audio/vidéo sont supportés.</p>
+                        <span class="btn btn-default fileinput-button" id="file-send">
+                            <i class="fa fa-upload"></i>
+                            <span>Envoyer un fichier</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="fileupload" multiple="" type="file" name="file">
+                        </span>
+
+                        <div id="files">
+                            <button type="button" class="btn btn-success hidden" id="file-success"><i class="fa fa-check"></i> <span>lcp_q_gov.wav</span></button>
+                        </div>
+
+
+                        <div class="progress progress-striped active hidden" id="upload-progress" >
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                <span>0%</span>
+                            </div>
+                        </div>
+
+
+                        <!-- Start an Alert -->
+                        <div class="kode-alert kode-alert-icon alert6 hidden" style="margin-top: 10px;" id="upload-error">
+                            <i class="fa fa-warning"></i>
+                            <a href="#" class="closed">&times;</a>
+                            <h4>Upload error</h4>
+                            <b><span></span></b> Please try again.
+                        </div>
+                        <!-- End an Alert -->
+
+                    </div>
+
+                    <div class="choice">
+                        <h4>2 — Choisissez votre modèle</h4>
+
+                        <select class="selectpicker" id="asr-models">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Annuler</button>
+                    <span id="start-transcription">
+                        <button type="button" class="btn btn-success" disabled="disabled">Lancer la transcription</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Moda Code -->
+
+</div>
+<!-- End Content -->
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+<!-- ================================================
+jQuery Library
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/jquery.min.js') }}"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/bootstrap/bootstrap.min.js') }}"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/plugins.js') }}"></script>
+
+<!-- ================================================
+Bootstrap Select
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/bootstrap-select/bootstrap-select.js') }}"></script>
+
+<!-- ================================================
+Bootstrap Toggle
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
+
+<!-- ================================================
+Summernote
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/summernote/summernote.min.js') }}"></script>
+
+<!-- ================================================
+Data Tables
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/datatables/datatables.min.js') }}"></script>
+
+<!-- ================================================
+Sweet Alert
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/sweet-alert/sweet-alert.min.js') }}"></script>
+
+<!-- ================================================
+Kode Alert
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/kode/js/kode-alert/main.js') }}"></script>
+
+<!-- ================================================
+Jquery fileupload
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/jquery-fileupload/jquery.ui.widget.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/jquery-fileupload/jquery.iframe-transport.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/jquery-fileupload/jquery.fileupload.js') }}"></script>
+
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='lib/mithril.min.js') }}"></script>
+
+<script type="text/javascript" src="{{ url_for('frontend.static', filename='js/main.js') }}"></script>
+
+<!-- ================================================
+Custom JS
+================================================ -->
+<script type="text/javascript" src="{{ url_for('frontend.default_values') }}"></script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
+

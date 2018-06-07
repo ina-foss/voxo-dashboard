@@ -1,0 +1,32 @@
+{% extends "frontend/layout.html" %}
+
+{% block content %}
+
+<h1>Upload a file</h1>
+
+<div id="uploader">
+    <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+</div>
+{% endblock %}
+ 
+{% block js %}
+<script type="text/javascript">
+// Initialize the widget when the DOM is ready
+</script>
+
+
+<script type="text/javascript">
+    var uploadUrl = '{{ url_for('api.upload_file') }}';
+    var authToken = '{{ auth_token }}';
+</script>
+
+<script src="{{ url_for('frontend.static', filename='lib/plupload/js/plupload.full.min.js') }}"></script>
+<script src="{{ url_for('frontend.static', filename='lib/plupload/js/jquery.plupload.queue/jquery.plupload.queue.min.js') }}"></script>
+<script src="{{ url_for('frontend.static', filename='js/upload.js') }}"></script>
+
+{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('frontend.static', filename='lib/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css') }}">
+{% endblock %}
